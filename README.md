@@ -1,2 +1,2 @@
-# Re-Java
-从零开始的Java开发
+# Re-Novel
+从零开始的轻小说
