@@ -15,6 +15,7 @@
     <p>??</p>
     <p>max = <c:out value="${max}"/></p>
     <p>count = <c:out value="${count}"/></p>
+    <p>roleName = <c:out value="${roleName}"/></p>
     <p>variPath = <c:out value="${pathValue}"/></p>
     <c:forEach items="${spittleList}" var="spittle">
         <li id="spittle_<c:out value="spittle.id"/>">

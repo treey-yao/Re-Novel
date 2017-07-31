@@ -19,11 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/spittles").hasRole("user")
-                .anyRequest().permitAll()
-                .and()
-                .requiresChannel()
-                .antMatchers("/spittles/register").requiresSecure();
+                .antMatchers("/spittles").hasRole("ADMIN")
+                .anyRequest().permitAll();
+//                .and()
+//                .requiresChannel()
+//                .antMatchers("/spittles/register").requiresSecure();
     }
 
 

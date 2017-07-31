@@ -22,15 +22,12 @@ public class RoleInfo {
     @Size(min=5,max=10)
     public String password;
 
-    @NotNull
-    @Size(min=5,max=10)
-    public String email;
+
     public RoleInfo(){
         this.firstName="22";
         this.lastName="lastName";
         this.userName="33";
         this.password="password";
-        this.email="email";
     }
     public String getFirstName() {
         return firstName;

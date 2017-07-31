@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -22,6 +23,7 @@ import java.io.IOException;
 @Configuration
 @EnableWebMvc
 @ComponentScan("spittr.web")
+@ImportResource("WEB-INF/dispatcher-servlet.xml")
 public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public ViewResolver viewResolver(){

@@ -4,36 +4,4 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!--<context-param>-->
-        <!--<param-name>contextConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/applicationContext.xml</param-value>-->
-    <!--</context-param>-->
-    <!--<listener>-->
-        <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-    <!--</listener>-->
-    <!--<servlet>-->
-        <!--<servlet-name>dispatcher</servlet-name>-->
-        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-        <!--<load-on-startup>1</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet>-->
-        <!--<servlet-name>indexServlet</servlet-name>-->
-        <!--<servlet-class>com.ccyblog.www.IndexServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet>-->
-        <!--<servlet-name>sessionServlet</servlet-name>-->
-        <!--<servlet-class>com.ccyblog.test.SessionServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>dispatcher</servlet-name>-->
-        <!--<url-pattern>*.form</url-pattern>-->
-    <!--</servlet-mapping>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>indexServlet</servlet-name>-->
-        <!--<url-pattern></url-pattern>-->
-    <!--</servlet-mapping>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>sessionServlet</servlet-name>-->
-        <!--<url-pattern>/count</url-pattern>-->
-    <!--</servlet-mapping>-->
 </web-app>

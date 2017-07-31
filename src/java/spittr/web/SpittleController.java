@@ -5,16 +5,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+
 
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -44,6 +47,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class SpittleController {
 
     private SpittleRepository spittleRepository;
+//    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private FooServiceImpl fooService;
     @Autowired
     public SpittleController(MyRepository spittleRepository){
         this.spittleRepository = spittleRepository;
@@ -53,9 +60,12 @@ public class SpittleController {
             @RequestParam(value = "max",defaultValue = "10") long max,
             @RequestParam(value = "count", defaultValue = "" + Integer.MAX_VALUE) int count,
             Model model){
+//        WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+//        wac.getBean("sqlSessionFactory");
         model.addAttribute("spittleList",spittleRepository.findSpittles(Long.MAX_VALUE, 20));
         model.addAttribute("max", max);
         model.addAttribute("count", count);
+        model.addAttribute("roleName", fooService.getRoleById(1l).getRoleName());
         return "spittles";
 
     }

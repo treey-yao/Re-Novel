@@ -11,7 +11,7 @@ import javax.servlet.ServletRegistration;
  */
 public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?> []{RootConfig.class, SecurityConfig.class};
+        return new Class<?> []{RootConfig.class};
     }
 
     protected Class<?>[] getServletConfigClasses() {
@@ -26,4 +26,5 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement("D:\\web\\workspace\\tmp", 2000, 4194304, 0));
     }
+
 }
