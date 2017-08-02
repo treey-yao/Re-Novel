@@ -4,8 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+
+
+    <settings>
+        <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- Sets the number of seconds the driver will wait for a response from the database -->
+        <setting name="defaultStatementTimeout" value="3000"/>
+        <!-- Enables automatic mapping from classic database column names A_COLUMN to camel case classic Java property names aColumn -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- Allows JDBC support for generated keys. A compatible driver is required.
+        This setting forces generated keys to be used if set to true,
+         as some drivers deny compatibility but still work -->
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+
     <typeAliases>
-        <typeAlias alias="Role" type="spittr.web.Role"/>
+        <typeAlias alias="account" type="www.ccyblog.novel.modules.register.entity.Account"/>
     </typeAliases>
 
     <!--<environments default="development">-->
@@ -20,8 +35,9 @@
         <!--</environment>-->
     <!--</environments>-->
 
-    <!--<mappers>-->
-        <!--<mapper resource=""/>-->
-    <!--</mappers>-->
+    <mappers>
+        <!--<mapper resource="classpath*:mappings/modules/register/Account.xml"/>-->
+        <mapper resource="mappings/modules/register/Account.xml"/>
+    </mappers>
 
 </configuration>

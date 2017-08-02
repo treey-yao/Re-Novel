@@ -1,0 +1,62 @@
+
+/*------------- header --------------*/
+header{
+    position: relative;
+}
+.header_nav_bg{
+    width: 100%;
+    background-color: transparent;
+    position: relative;
+    left: 0px;
+    top: -172px;
+}
+
+.header_nav{
+    width: 1000px;
+    margin: auto;
+}
+
+.header_bg{
+    background: transparent no-repeat center -10px url("../WEB-INF/images/header_bg.png");
+    /*background-image: url("../images/header_bg.png");*/
+    height: 170px;
+    width: 100%;
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+/*--------------- footer ----------------*/
+footer{
+    background-color: #dde0e7;
+    margin-top: 50px;
+    padding: 50px;
+}
+.footer_container{
+    width: 1000px;
+    height: 200px;
+    margin: auto;
+}
+
+.webinfo{
+    width:400px;
+    height: 100%;
+    float: left;
+}
+
+.friend_url{
+    float: left;
+    margin-left: 30px;
+    width: 150px;
+}
+
+.technology{
+    float: left;
+    margin-left: 30px;
+    width: 300px;
+}
+
+.friend_url ul{
+    list-style: none;
+    padding: 0px;
+}

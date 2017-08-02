@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName">
             <value>com.mysql.cj.jdbc.Driver</value>
         </property>
         <property name="url">
-            <value>jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC</value>
+            <value>jdbc:mysql://localhost:3306/novel?serverTimezone=UTC</value>
         </property>
         <property name="username">
             <value>root</value>
@@ -16,60 +16,25 @@
             <value>123456</value>
         </property>
     </bean>
-    <!--<alias name="roleMapper" alias="mapper"></alias>-->
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource" />-->
-        <!--<property name="configLocation" value="WEB-INF/mybatis-config.xml"></property>-->
-        <!--<property name="mapperLocations" value="WEB-INF/roleMapper.xml"></property>-->
-    <!--</bean>-->
-    <!--<bean id="roleMapper2" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="mapperInterface" value="spittr.web.RoleMapper" />-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory" />-->
-    <!--</bean>-->
 
-    <!--<bean id="roleMapper2" parent="roleMapper11">-->
-        <!--<property name="mapperInterface" value="spittr.web.RoleMapper2"></property>-->
-    <!--</bean>-->
-
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="spittr.web" />-->
-    <!--</bean>-->
-
-
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName">-->
-            <!--<value>com.mysql.cj.jdbc.Driver</value>-->
-        <!--</property>-->
-        <!--<property name="url">-->
-            <!--<value>jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC</value>-->
-        <!--</property>-->
-        <!--<property name="username">-->
-            <!--<value>root</value>-->
-        <!--</property>-->
-        <!--<property name="password">-->
-            <!--<value>123456</value>-->
-        <!--</property>-->
-    <!--</bean>-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="WEB-INF/roleMapper.xml"></property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="WEB-INF/mybatis-config.xml"></property>
+        <!--<property name="mapperLocations" value="classpath:mappings/modules/register/Account.xml"></property>-->
     </bean>
-    <!--<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="mapperInterface" value="spittr.web.RoleMapper"/>-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
-    <!--</bean>-->
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+    </bean>
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="spittr.web" />
+        <property name="basePackage" value="www.ccyblog.novel" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
-    <bean id="fooService" class="spittr.web.FooServiceImpl">
-        <property name="roleMapper" ref="roleMapper"></property>
-    </bean>
-
-
-
+    <!--<mvc:resources mapping="/resources/**" location="/resources/" />-->
+    <mvc:resources mapping="/images/**" location="/images/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
 
 
 </beans>
