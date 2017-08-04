@@ -39,7 +39,7 @@
                     <span class="sr-only">Loading...</span>
                 </span>
                 <span id="captcha_img">
-                    <img src="/images/icon.jpg" alt="">
+                    <img src="/account/captcha.jpeg" alt="">
                 </span>
                     <a href="" id="refresh"><i class="fa fa-refresh fa-2x fa-fw"/></a></i>
             </div>

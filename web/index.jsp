@@ -12,5 +12,6 @@
   </head>
   <body>
   $END$
+  <img src="http://localhost:8080/account/captcha.jpeg"/>
   </body>
 </html>
