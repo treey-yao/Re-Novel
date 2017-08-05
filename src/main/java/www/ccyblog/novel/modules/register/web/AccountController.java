@@ -5,10 +5,12 @@ import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import www.ccyblog.novel.modules.register.service.AccountService;
 import www.ccyblog.novel.modules.register.service.JCaptchaService;
 
@@ -18,6 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import www.ccyblog.novel.modules.register.service.AccountService.REGISTER_ERROR_INFO;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -120,5 +128,14 @@ public class AccountController {
     @RequestMapping(value = "/login", method = POST)
     public String login(String username, String password){
         return "redirect:";
+    }
+
+    //《sping in action》没有提示依赖哪些库，尝试一下午，终于确定是jackson-core 和 jackson-databind
+    @RequestMapping(value="/query.json", method = POST)
+    public @ResponseBody Map queryUsername(@RequestParam(value = "username") String username){
+        boolean isRepeat = accountService.hasUsername(username);
+        HashMap hashMap = new HashMap<String, Boolean>();
+        hashMap.put("repeat", isRepeat);
+        return hashMap;
     }
 }

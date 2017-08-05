@@ -85,3 +85,13 @@ body{
 #loading{
     display: none;
 }
+
+.input_tip{
+    color: red;
+    display: none;
+}
+
+#username_success{
+    color: green;
+    display: none;
+}

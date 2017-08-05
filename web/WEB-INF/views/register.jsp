@@ -7,7 +7,6 @@
     <title>测试丫</title>
     <link href="/css/register.css" rel="stylesheet">
 </head>
-
 <body>
     <div class="topInfo">
         <label  class="title">账号注册</label>
@@ -18,19 +17,25 @@
         <form method="post">
             <div class="input_line">
                 <label class="input_label">用户名：</label>
-                <input class="form-control input_text " type="text" name="username" placeholder="6-18位字母数字组合">
+                <input class="form-control input_text " type="text" name="username" id="username" placeholder="6-18位字母数字组合">
+                <label class="input_tip" type="text" id="username_tip"><i class="fa fa-plus-square-o" aria-hidden="true"></i>用户名格式错误</label>
+                <label class="input_tip" type="text" id="username_repeat"><i class="fa fa-chain-broken" aria-hidden="true"></i>用户名已经被使用</label>
+                <label class="input_tip" type="text" id="username_success"><i class="fa fa-check" aria-hidden="true"></i>用户名可以使用</label>
             </div>
             <div class="input_line">
                 <label class="input_label">密码：</label>
-                <input class="form-control  input_text" type="password" name="password" placeholder="6-16位密码，区分大小写" />
+                <input class="form-control  input_text" type="password" name="password" id="password" placeholder="6-16位密码，区分大小写" />
+                <label class="input_tip" type="text" id="password_tip">密码长度不对</label>
             </div>
             <div class="input_line">
                 <label class="input_label">确认密码：</label>
-                <input class="form-control  input_text" type="password" name="rePassword" placeholder="再次输入密码" />
+                <input class="form-control  input_text" type="password" name="rePassword" id="rePassword" placeholder="再次输入密码" />
+                <label class="input_tip" type="text" id="re_password_tip">密码不一致</label>
             </div>
             <div class="input_line">
                 <label class="input_label">验证码：</label>
-                <input class="form-control  input_text" type="text" name="captcha" placeholder="输入下面图片中的数字" />
+                <input class="form-control  input_text" type="text" name="captcha" id="captcha"  placeholder="输入下面图片中的数字" />
+                <label class="input_tip" type="text" id="captcha_tip">验证码长度不对</label>
             </div>
             <div class="captcha">
                 <label class="input_label"></label>

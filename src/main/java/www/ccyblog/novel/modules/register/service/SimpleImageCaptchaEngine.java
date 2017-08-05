@@ -34,7 +34,7 @@ public class SimpleImageCaptchaEngine extends DefaultImageCaptchaEngine {
 
         BackgroundGenerator funkyBack = new GradientBackgroundGenerator(
                 160,
-                60,
+                80,
                 new RandomRangeColorGenerator(new int[]{0,125},new int[]{0,125}, new int[]{0,123}),
                 new RandomRangeColorGenerator(new int[]{0,125},new int[]{0,125}, new int[]{0,123})
         );
