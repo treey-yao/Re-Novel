@@ -1,4 +1,4 @@
-package www.ccyblog.novel.modules.register.service;
+package www.ccyblog.novel.modules.account.service;
 
 import com.octo.captcha.service.captchastore.MapCaptchaStore;
 import com.octo.captcha.service.image.DefaultManageableImageCaptchaService;

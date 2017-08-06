@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <%@include file="header.jsp"%>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <title>测试丫</title>
     <link href="/css/register.css" rel="stylesheet">
 </head>
@@ -13,6 +13,7 @@
         <img src="/images/icon.jpg" alt="">
         <label class="login">已有帐号？去<a href="">登录</a></label>
     </div>
+    <%-- TODO 验证码错误时，给予提示--%>
     <div class="reg_bg">
         <form method="post">
             <div class="input_line">
@@ -56,12 +57,13 @@
                 <label class="input_label"></label>
                 <div class="terms switch">
                     <input type="checkbox" id="terms" checked>
-                    <span>用户勾选即代表同意<a href="">《服务条款》</a></span>
+                    <span>用户勾选即代表同意<a href="./terms">《服务条款》</a></span>
                 </div>
             </div>
         </form>
     </div>
     <%@include file="footer.jsp"%>
+    <script src="/js/account/register.js"></script>
 </body>
 
 </html>

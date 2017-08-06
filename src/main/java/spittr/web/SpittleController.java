@@ -79,7 +79,7 @@ public class SpittleController {
     public String showForm(Model model)
     {
         model.addAttribute("roleInfo", new RoleInfo());
-        return "register_tmp";
+        return "register";
     }
 
     @RequestMapping(value="/register",method = POST)
@@ -92,7 +92,7 @@ public class SpittleController {
         }
         if(errors.hasErrors()){
             model.addAttribute("hasError",true);
-            return "register_tmp";
+            return "register";
         }
         return "redirect:/spittles/profile/" + roleInfo.getUserName();
     }

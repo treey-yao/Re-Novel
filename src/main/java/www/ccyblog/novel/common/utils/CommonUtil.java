@@ -20,4 +20,5 @@ public class CommonUtil {
         }
         return new String(str);
     }
+
 }

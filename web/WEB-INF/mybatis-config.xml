@@ -20,7 +20,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="account" type="www.ccyblog.novel.modules.register.entity.Account"/>
+        <typeAlias alias="account" type="www.ccyblog.novel.modules.account.entity.Account"/>
     </typeAliases>
 
     <!--<environments default="development">-->

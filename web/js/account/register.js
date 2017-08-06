@@ -10,6 +10,8 @@ let ajaxQueryUsername = null;
 // 很长时间不用，起手就一个Deprecated，日了狗，替代方案在https://api.jquery.com/ready/
 $(function(){
     setSubmitBtn();
+    hiddenAllUsernameTip();
+    checkRepeat($("#username").val());
     //---------------------------   用户    -----------------------------------------
     $("#username").focus(function(){
        $("#username_tip").css("display", "none");

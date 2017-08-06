@@ -1,7 +1,7 @@
-package www.ccyblog.novel.modules.register.dao;
+package www.ccyblog.novel.modules.account.dao;
 
 import org.springframework.stereotype.Repository;
-import www.ccyblog.novel.modules.register.entity.Account;
+import www.ccyblog.novel.modules.account.entity.Account;
 
 /**
  * Created by ccy on 2017/7/31.

@@ -1,10 +1,11 @@
-package www.ccyblog.novel.modules.register.service;
+package www.ccyblog.novel.modules.account.service;
 
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import www.ccyblog.novel.common.utils.CommonUtil;
-import www.ccyblog.novel.modules.register.dao.AccountDao;
-import www.ccyblog.novel.modules.register.entity.Account;
+import www.ccyblog.novel.modules.account.dao.AccountDao;
+import www.ccyblog.novel.modules.account.entity.Account;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
@@ -50,8 +51,10 @@ public class AccountService {
         }
         Account account = new Account();
         account.setUsername(username);
+        String salt = CommonUtil.generateRandomSalt();
+        password = new Md5Hash(password + username + salt).toString();
+        account.setSalt(salt);
         account.setPassword(password);
-        account.setSalt(CommonUtil.generateRandomSalt());
         if(accountDao.createAccount(account) == 1){
             return REGISTER_ERROR_INFO.NORMAL;
         }

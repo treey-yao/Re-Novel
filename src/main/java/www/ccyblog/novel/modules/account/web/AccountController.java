@@ -1,18 +1,22 @@
-package www.ccyblog.novel.modules.register.web;
+package www.ccyblog.novel.modules.account.web;
 
 import com.octo.captcha.service.CaptchaServiceException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import lombok.extern.log4j.Log4j;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import www.ccyblog.novel.modules.register.service.AccountService;
-import www.ccyblog.novel.modules.register.service.JCaptchaService;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import www.ccyblog.novel.common.security.UserAuthenticationToken;
+import www.ccyblog.novel.modules.account.service.AccountService;
+import www.ccyblog.novel.modules.account.service.AccountService.REGISTER_ERROR_INFO;
+import www.ccyblog.novel.modules.account.service.JCaptchaService;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import www.ccyblog.novel.modules.register.service.AccountService.REGISTER_ERROR_INFO;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -35,6 +34,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 /**
  * Created by ccy on 2017/7/31.
  */
+//TODO 完成授权
 @Log4j
 @Controller
 @RequestMapping("/account")
@@ -47,7 +47,14 @@ public class AccountController {
 
     @RequestMapping(value = "/register", method = GET)
     public String registerForm(){
-//        accountService.createAccount("mynameisxiaoxiao", "hchc08235");
+//        Subject currentUser = SecurityUtils.getSubject();
+//        UsernamePasswordToken usernamePasswordToken = new UserAuthenticationToken("isghost2", "hchc0815", accountService);
+//        try{
+//            currentUser.login(usernamePasswordToken);
+//            usernamePasswordToken.setRememberMe(true);
+//        }catch (AuthenticationException e){
+//            return "index";
+//        }
         return "register";
     }
 
@@ -60,7 +67,7 @@ public class AccountController {
 
         REGISTER_ERROR_INFO status =  accountService.createAccount(username, password, rePassword, captcha);
         switch (status){
-            case NORMAL: return "home";
+            case NORMAL: return "index";
             case CAPTCHA: return "redirect:register?error=captcha";
             case USERNAME: return "redirect:register?error=username";
             case PASSWORD: return "redirect:register?error=password";
@@ -125,9 +132,23 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/login", method = POST)
-    public String login(String username, String password){
-        return "redirect:";
+    @RequestMapping(value = "/login", method = GET)
+    public String showLoginForm(Model model){
+        return "login";
+    }
+
+    @RequestMapping(value="/login", method = POST)
+    public String login(@RequestParam String username, @RequestParam String password, RedirectAttributes model){
+        Subject currentUser = SecurityUtils.getSubject();
+        UsernamePasswordToken usernamePasswordToken = new UserAuthenticationToken(username, password, accountService);
+        try{
+            currentUser.login(usernamePasswordToken);
+            usernamePasswordToken.setRememberMe(true);
+        }catch (AuthenticationException e){
+            model.addFlashAttribute("error", true);
+            return "redirect:/account/login";
+        }
+        return "redirect:/";
     }
 
     //《sping in action》没有提示依赖哪些库，尝试一下午，终于确定是jackson-core 和 jackson-databind
@@ -137,5 +158,10 @@ public class AccountController {
         HashMap hashMap = new HashMap<String, Boolean>();
         hashMap.put("repeat", isRepeat);
         return hashMap;
+    }
+
+    @RequestMapping(value="/terms")
+    public String getTerms(){
+        return "terms";
     }
 }

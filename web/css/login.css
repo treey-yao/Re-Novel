@@ -1,0 +1,77 @@
+body{
+    background-color: #efefef;
+}
+.login-bg{
+    width: 100%;
+    height: 645px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-size: cover;
+    background: url("/images/login-bg.jpg") no-repeat center center;
+}
+
+.login-content{
+    width: 100%;
+    position: relative;
+    height: 645px;
+    margin-bottom: -50px;
+}
+
+.center-content{
+    width: 80%;
+    /*max-width: 1220px;*/
+    position: relative;
+    height: 645px;
+    margin: auto;
+}
+
+.loginWrap{
+    padding: 20px 35px;
+    width: 345px;
+    height: 412px;
+    position: absolute;
+    right: 0px;
+    top: 83px;
+    border-radius: 10px;
+    box-shadow: #505050 3px 3px 8px inset;
+    background-color: #dde0e7;
+}
+
+.input_border{
+    margin: 10px auto;
+    border: 1px solid darkgray;
+    height: 48px;
+    width: 250px;
+    padding: 10px;
+}
+
+.input_border input{
+    border-style: none;
+    background-color: #dde0e7;
+}
+
+.fa{
+    width: 20px;
+    margin: 0 0px 0 8px;
+}
+
+.input_line{
+    margin: 20px 0px;
+}
+
+.register{
+    float: right;
+}
+
+.register_wrap{
+    height: 50px;
+}
+
+.input_submit{
+    width: 100%;
+}
+
+.error_tip{
+    color: red;
+}

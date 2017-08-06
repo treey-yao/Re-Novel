@@ -1,4 +1,4 @@
-package www.ccyblog.novel.modules.register.entity;
+package www.ccyblog.novel.modules.account.entity;
 
 import lombok.Data;
 
