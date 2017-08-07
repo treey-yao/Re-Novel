@@ -1,6 +1,7 @@
 package www.ccyblog.novel.modules.account.web;
 
 import lombok.extern.log4j.Log4j;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Log4j
 @Controller
 public class ProfileController {
+    @RequiresRoles("user")
     @RequestMapping("/profile")
     public String showProfile(){
         return "profile";

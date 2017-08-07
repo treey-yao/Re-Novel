@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName">
             <value>com.mysql.cj.jdbc.Driver</value>
@@ -36,5 +37,65 @@
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/js/**" location="/js/" />
+
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- override these for application-specific URLs if you like:-->
+        <property name="loginUrl" value="/account/login"/>
+        <property name="successUrl" value="/index"/>
+        <property name="unauthorizedUrl" value="/unauthorized"/>
+        <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean  -->
+        <!-- defined will be automatically acquired and available via its beanName in chain        -->
+        <!-- definitions, but you can perform instance overrides or name aliases here if you like: -->
+        <!--<property name="filters">-->
+            <!--<util:map>-->
+                <!--<entry key="anAlias" value-ref="shiroFilter"/>-->
+            <!--</util:map>-->
+        <!--</property>-->
+        <property name="filterChainDefinitions">
+            <value>
+                # some example chain definitions:
+                # /admin/** = authc, roles[admin]
+                # /docs/** = authc, perms[document:read]
+                # /profile = authc
+                # more URL-to-FilterChain definitions here
+            </value>
+        </property>
+    </bean>
+
+    <!-- Define the realm you want to use to connect to your back-end security datasource: -->
+    <bean id="userRealm" class="www.ccyblog.novel.common.security.UserRealm">
+
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
+        <property name="realm" ref="userRealm"/>
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <!-- For simplest integration, so that all SecurityUtils.* methods work in all cases, -->
+    <!-- make the securityManager bean a static singleton.  DO NOT do this in web         -->
+    <!-- applications - see the 'Web Applications' section below instead.                 -->
+    <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+    <!--<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>-->
+    <!--<property name="arguments" ref="securityManager"/>-->
+    <!--</bean>-->
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/account/login</prop>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/account/login</prop>
+            </props>
+        </property>
+    </bean>
 
 </beans>
