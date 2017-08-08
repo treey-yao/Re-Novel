@@ -67,7 +67,7 @@ public class AccountController {
 
         REGISTER_ERROR_INFO status =  accountService.createAccount(username, password, rePassword, captcha);
         switch (status){
-            case NORMAL: return "index";
+            case NORMAL: return "redirect:/account/login";
             case CAPTCHA: return "redirect:register?error=captcha";
             case USERNAME: return "redirect:register?error=username";
             case PASSWORD: return "redirect:register?error=password";

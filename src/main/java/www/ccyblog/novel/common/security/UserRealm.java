@@ -1,5 +1,6 @@
 package www.ccyblog.novel.common.security;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -7,6 +8,7 @@ import org.apache.shiro.authz.permission.WildcardPermission;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
@@ -53,6 +55,8 @@ public class UserRealm extends AuthorizingRealm{
         else if(!new Md5Hash(password + username + account.getSalt()).toString().equals(account.getPassword())){
             throw new IncorrectCredentialsException();
         }
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setAttribute("account", account);
         return new SimpleAuthenticationInfo(username, password, getName());
     }
 }

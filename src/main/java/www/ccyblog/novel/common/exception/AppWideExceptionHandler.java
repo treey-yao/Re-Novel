@@ -1,4 +1,4 @@
-package spittr.web;
+package www.ccyblog.novel.common.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
