@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by ccy.
   User: ccy
@@ -22,6 +23,9 @@
         <p>
             <a href="/account/login">这里是登录注册位置，目前完成的唯一功能</a>
         </p>
+        <c:if test="${login == true}">
+            <p><a href="/account/logout">退出登录</a></p>
+        </c:if>
     </div>
 <%@include file="footer.jsp" %>
 </body>

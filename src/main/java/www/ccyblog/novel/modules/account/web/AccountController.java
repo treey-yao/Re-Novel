@@ -80,17 +80,18 @@ public class AccountController {
     public void getJCaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         byte[] captchaChallengeAsJpeg = null;
         // the output stream to render the captcha image as jpeg into
+        // 将图片写入输出流
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
         try {
-            // get the session id that will identify the generated captcha.
-            //the same id must be used to validate the response, the session id is a good candidate!
+            // 获得session Id用于验证码生成.
+            //必须使用相当的id 来验证验证码， session Id是一个好的选择!
             String captchaId = httpServletRequest.getSession().getId();
-            // call the ImageCaptchaService getChallenge method
+            // 获得验证码图片
             BufferedImage challenge =
                     jCaptchaService.getImageChallengeForID(captchaId,
                             httpServletRequest.getLocale());
 
-            // a jpeg encoder
+            // jpeg编码器
 
             JPEGImageEncoder jpegEncoder =
                     JPEGCodec.createJPEGEncoder(jpegOutputStream);
@@ -116,7 +117,7 @@ public class AccountController {
 
         captchaChallengeAsJpeg = jpegOutputStream.toByteArray();
 
-        // flush it in the response
+        // 写入响应
         httpServletResponse.setHeader("Cache-Control", "no-store");
         httpServletResponse.setHeader("Pragma", "no-cache");
         httpServletResponse.setDateHeader("Expires", 0);
@@ -163,5 +164,14 @@ public class AccountController {
     @RequestMapping(value="/terms")
     public String getTerms(){
         return "terms";
+    }
+
+    @RequestMapping(value="/logout")
+    public String logout(){
+        Subject currentUser = SecurityUtils.getSubject();
+        if(currentUser.isAuthenticated()){
+            currentUser.logout();
+        }
+        return "redirect:/index";
     }
 }

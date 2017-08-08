@@ -70,6 +70,11 @@ $(function(){
             return ;
         }
     });
+    // ----------------------------------  刷新按钮 --------------------------
+    $("#refresh").click(function(){
+        // 设置属性，会自动重新加载
+        $("#captcha_img > img").attr("src", "/account/captcha.jpeg");
+    });
     //------------------------- 条款 -------------------------------
     $("#terms").change(function(){
        setSubmitBtn();

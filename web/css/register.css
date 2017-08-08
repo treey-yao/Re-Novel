@@ -95,3 +95,8 @@ body{
     color: green;
     display: none;
 }
+
+#refresh{
+    border-style: none;
+    background: white;
+}

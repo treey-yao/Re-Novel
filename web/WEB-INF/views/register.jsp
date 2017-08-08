@@ -11,9 +11,10 @@
     <div class="topInfo">
         <label  class="title">账号注册</label>
         <img src="/images/icon.jpg" alt="">
-        <label class="login">已有帐号？去<a href="">登录</a></label>
+        <label class="login">已有帐号？去<a href="/account/login">登录</a></label>
     </div>
     <%-- TODO 验证码错误时，给予提示--%>
+    <%-- TODO 注册出现错误后， 保留用户名--%>
     <div class="reg_bg">
         <form method="post">
             <div class="input_line">
@@ -41,13 +42,15 @@
             <div class="captcha">
                 <label class="input_label"></label>
                 <span id="loading">
-                    <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                    <i class="fa fa-spinner fa-spin fa-2x fa-fw "></i>
                     <span class="sr-only">Loading...</span>
                 </span>
                 <span id="captcha_img">
                     <img src="/account/captcha.jpeg" alt="">
                 </span>
-                    <a href="" id="refresh"><i class="fa fa-refresh fa-2x fa-fw"/></a></i>
+                <button type="button" id="refresh">
+                    <i class="fa fa-refresh fa-2x fa-fw"></i>
+                </button>
             </div>
             <div class="">
                 <label class="input_label"></label>
