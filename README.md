@@ -33,12 +33,19 @@
 * `bootstrap`
 * `awesome-font`
 
+#### 开发环境
+* `JDK1.8`
+* `Idea 2016.3.4`
+
 ## 功能模块说明
 1. [登录注册](https://github.com/isghost/Re-Novel/blob/master/doc/LOGIN_REGISTER.md)
 
 ## 更新记录
 1. 2017/06/09 开坑
 2. 2017/08/09 完成登录注册
+
+## 如何贡献代码
+用`idea`打开工程，在`TODO`里面，有一些待完成的功能点，可以优先完成这些功能。当然，有建议，想法，实现，都可以提交过来。
 
 ## 历程
 #### 1. 2017/08/09
