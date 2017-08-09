@@ -2,7 +2,7 @@
 基于Java Web技术开发的动漫轻小说网站
 
 ## 网站地址
-[novel.ccyblog.com](novel.ccyblog.com)
+[novel.ccyblog.com](https://novel.ccyblog.com)
 
 ## 开发计划
 1. 登录注册(已基本成完)
